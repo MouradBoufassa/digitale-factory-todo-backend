@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') app.use(morgan('tiny'));
 
 // * Routes
 app.use('/api/users', require('./routes/users.router'));
+app.use('/api/auth', require('./routes/auth.router'));
 
 // * Connection
 app.listen(PORT, () => {
