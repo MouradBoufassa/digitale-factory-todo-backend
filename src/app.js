@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false, limit: '1mb' }));
 if (process.env.NODE_ENV === 'DEVELOPMENT') app.use(morgan('tiny'));
 
 // * Routes
+app.use('/api/users', require('./routes/users.router'));
 
 // * Connection
 app.listen(PORT, () => {
