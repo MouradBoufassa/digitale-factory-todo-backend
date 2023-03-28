@@ -1,0 +1,30 @@
+{
+  "name": "todo-backend",
+  "version": "0.0.0",
+  "description": "A simple and easy-to-use todo list app for keeping track of tasks and managing your daily schedule. Technical test provided by Factory Digitale",
+  "main": "./src/app.js",
+  "author": "khaledxyz",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "nanoid": "^3.3.6",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.21"
+  }
+}
