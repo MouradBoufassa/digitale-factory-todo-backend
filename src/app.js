@@ -8,6 +8,7 @@ const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const connectDB = require('./config/connectDB');
 
 // * Middleware 
 app.use(cors({ origin: process.env.CLIENT_URL }));
@@ -23,4 +24,6 @@ app.listen(PORT, () => {
         'Dev server running at  >'.green,
         `http://localhost:${PORT}`.blue
     );
+
+    connectDB();
 });
