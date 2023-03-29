@@ -64,4 +64,20 @@ const updateTodoById = ('/', asyncHandler(async (req, res) => {
     res.json(todo);
 }));
 
-module.exports = { createTodo, getTodos, updateTodoById };
+// * REORDER TODO * //
+// @desc    Reorders a todo by its ID
+// @route   PATCH /api/todos/:id/reorder
+// @access  private - authenticated users only
+const reorderTodoById = ('/', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { newOrder } = req.body;
+
+    // Iterate over the new order of todo IDs and update their positions in the database
+    for (let i = 0; i < newOrder.length; i++) {
+        await Todo.findByIdAndUpdate(id, { position: i });
+    };
+
+    res.json('good');
+}));
+
+module.exports = { createTodo, getTodos, updateTodoById, reorderTodoById };
