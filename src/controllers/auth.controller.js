@@ -2,6 +2,9 @@
 const asyncHandler = require('express-async-handler');
 const { isEmail } = require('validator');
 
+// * Helper functions
+const generateJWT = require('../functions/generateJWT');
+
 // * Models
 const User = require('../models/User.model');
 
@@ -35,7 +38,9 @@ const login = ('/', asyncHandler(async (req, res) => {
         throw new Error(message);
     };
 
-    res.json(user);
+    const token = generateJWT(user.id);
+
+    res.json({ user, token });
 }));
 
 module.exports = { login };
