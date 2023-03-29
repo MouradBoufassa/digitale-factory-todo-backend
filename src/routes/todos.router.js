@@ -3,8 +3,9 @@ const router = express.Router();
 
 const authenticate = require('../middleware/authenticate');
 
-const { createTodo } = require('../controllers/todos.controller');
+const { createTodo, getTodos } = require('../controllers/todos.controller');
 
 router.post('/', authenticate, createTodo);
+router.get('/', authenticate, getTodos);
 
 module.exports = router;

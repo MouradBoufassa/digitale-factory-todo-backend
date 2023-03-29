@@ -31,5 +31,13 @@ const createTodo = ('/', asyncHandler(async (req, res) => {
     res.json(todo);
 }));
 
+// * GET TODOS * //
+// @desc    Gets the todos of an authenticated user
+// @route   GET /api/todos
+// @access  private - authenticated users only
+const getTodos = ('/', asyncHandler(async (req, res) => {
+    const todos = await Todo.find({ author: req.user._id });
+    res.json(todos);
+}));
 
-module.exports = { createTodo };
+module.exports = { createTodo, getTodos };
