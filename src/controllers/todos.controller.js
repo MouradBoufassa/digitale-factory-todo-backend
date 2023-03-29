@@ -40,4 +40,28 @@ const getTodos = ('/', asyncHandler(async (req, res) => {
     res.json(todos);
 }));
 
-module.exports = { createTodo, getTodos };
+// * UPDATE TODO * //
+// @desc    Updates a todo by its ID
+// @route   PATCH /api/todos/:id
+// @access  private - authenticated users only
+const updateTodoById = ('/', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { title, description, endDate, finished } = req.body;
+
+    const todo = await Todo.findOneAndUpdate(id, {
+        title: title,
+        description: description,
+        endDate: endDate,
+        finished
+    });
+
+    if (!todo) {
+        const message = 'This todo does not exist. Please try again later.';
+        res.status(404).json({ message });
+        throw new Error(message);
+    };
+
+    res.json(todo);
+}));
+
+module.exports = { createTodo, getTodos, updateTodoById };
