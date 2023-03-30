@@ -22,6 +22,15 @@ const todoSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    embeddedTodos: [{
+        title: {
+            type: String,
+        },
+        checked: {
+            type: Boolean,
+            default: false
+        }
+    }],
     endDate: {
         type: Date,
     },
