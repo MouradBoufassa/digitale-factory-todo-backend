@@ -1,6 +1,9 @@
 // * Third party imports
 const asyncHandler = require('express-async-handler');
 
+// * Helper functions
+const arrayMove = require('../functions/arrayMove');
+
 // * Models
 const Todo = require('../models/Todo.model');
 
@@ -66,18 +69,25 @@ const updateTodoById = ('/', asyncHandler(async (req, res) => {
 
 // * REORDER TODO * //
 // @desc    Reorders a todo by its ID
-// @route   PATCH /api/todos/:id/reorder
+// @route   PATCH /api/todos/reorder
 // @access  private - authenticated users only
-const reorderTodoById = ('/', asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    const { newOrder } = req.body;
+const reorderTodos = ('/', asyncHandler(async (req, res) => {
+    const { activeIndex, overIndex } = req.body;
 
-    // Iterate over the new order of todo IDs and update their positions in the database
-    for (let i = 0; i < newOrder.length; i++) {
-        await Todo.findByIdAndUpdate(id, { position: i });
+    const todos = await Todo.find({ author: req.user._id }).sort({ position: 'asc' });
+
+    const item = todos[activeIndex];
+    const increment = overIndex < activeIndex ? -1 : 1;
+    for (let i = activeIndex; i !== overIndex; i += increment) {
+        todos[i] = todos[i + increment];
+        todos[i].position = i;
     };
+    todos[overIndex] = item;
+    todos[overIndex].position = overIndex;
 
-    res.json('good');
+    await Promise.all(todos.map((t) => t.save()));
+
+    res.json(todos);
 }));
 
-module.exports = { createTodo, getTodos, updateTodoById, reorderTodoById };
+module.exports = { createTodo, getTodos, updateTodoById, reorderTodos };
