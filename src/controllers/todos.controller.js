@@ -1,9 +1,6 @@
 // * Third party imports
 const asyncHandler = require('express-async-handler');
 
-// * Helper functions
-const arrayMove = require('../functions/arrayMove');
-
 // * Models
 const Todo = require('../models/Todo.model');
 
@@ -12,8 +9,7 @@ const Todo = require('../models/Todo.model');
 // @route   POST /api/todos
 // @access  private - authenticated users only
 const createTodo = ('/', asyncHandler(async (req, res) => {
-    const { title, description, endDate } = req.body;
-
+    const { title, description, endDate, embeddedTodos } = req.body;
     // Checks if the user provided the title
     if (!title) {
         const message = 'Please enter a title.';
@@ -22,13 +18,13 @@ const createTodo = ('/', asyncHandler(async (req, res) => {
     };
 
     await Todo.updateMany({}, { $inc: { position: 1 } });
-
     const todo = await Todo.create({
         author: req.user._id,
         title,
         description,
         position: 0,
-        endDate: endDate && new Date(endDate)
+        endDate: endDate && new Date(endDate),
+        embeddedTodos
     });
 
     res.json(todo);
@@ -51,10 +47,10 @@ const updateTodoById = ('/', asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { title, description, endDate, finished } = req.body;
 
-    const todo = await Todo.findOneAndUpdate(id, {
-        title: title,
-        description: description,
-        endDate: endDate,
+    const todo = await Todo.findByIdAndUpdate(id, {
+        title,
+        description,
+        endDate,
         finished
     });
 
