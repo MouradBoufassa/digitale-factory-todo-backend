@@ -10,6 +10,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/connectDB');
+<<<<<<< Updated upstream
+=======
+const swaggerSpecs = require('./config/swaggerOptions');
+const dueDateJob = require('./config/cron');
+>>>>>>> Stashed changes
 
 // * Middleware 
 app.use(cors({ origin: process.env.CLIENT_URL }));
@@ -31,4 +36,5 @@ app.listen(PORT, () => {
     );
 
     connectDB();
+    dueDateJob.start();
 });
