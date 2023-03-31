@@ -47,7 +47,7 @@ Follow the steps below to get the application running on your system:
 
  ## API Documentation
 
-The application has an interactive API documentation that can be accessed at `http://localhost:<port>/api/docs`. The documentation is generated using Swagger UI and provides an overview of all the available endpoints, their input parameters, and output responses.
+The application has an interactive API documentation that can be accessed at `http://localhost:<port>/api/docs`. The documentation is generated using Swagger UI and provides an overview of all the available endpoints, their input parameters, and output responses. Also <a href='https://www.postman.com/lively-firefly-865883/workspace/todo-list-factory-digitale' target='_blank'>Postman</a> workspace is available.
 
 You can also find a summary of the available endpoints in the table below:
 | Endpoint           | Method | Description                            |
