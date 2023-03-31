@@ -29,6 +29,17 @@ Follow the steps below to get the application running on your system:
         [ ]CLIENT_URL=<STRING>
         [*]MONGODB_URI=mongodb://[Username:Password(optional)]@HostName:Port/?aruguments
         [*]JWT_TOKEN_SECRET=<STRING>
+        
+        // These settings are exclusively required for utilizing the email reminder feature. 
+        // To test it out, you may obtain a free SMTP server from Sendinblue.com.
+        [ ]TRANSPORTER_HOST=<STRING>
+        [ ]TRANSPORTER_PORT=<NUMBER>
+        [ ]TRANSPORTER_AUTH_USER=<STRING>
+        [ ]TRANSPORTER_AUTH_PASSWORD=<STRING>
+        
+        // For more information about this please take a look at `./config/cron.js`
+        [ ]TODO_REMINDER_INTERVAL=<NUMBER>
+
 
   - Start the application:\
   `yarn dev` => for DEVELOPMENT \
