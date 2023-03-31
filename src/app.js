@@ -10,7 +10,10 @@ const swaggerUI = require('swagger-ui-express');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
 const connectDB = require('./config/connectDB');
+const dueDateJob = require('./config/cron');
+const swaggerSpecs = require('./config/swaggerOptions');
 const swaggerSpecs = require('./config/swaggerOptions');
 
 // * Middleware 
@@ -34,4 +37,5 @@ app.listen(PORT, () => {
     );
 
     connectDB();
+    dueDateJob.start();
 });
