@@ -58,3 +58,22 @@ You can also find a summary of the available endpoints in the table below:
 | /api/todos         | POST   | Create a new todo                      |
 | /api/todos/:id     | PATCH  | Update a todo by its ID                |
 | /api/todos/reorder | PUT    | Reorders a todo                        |
+
+## Built With
+  - <a href='https://expressjs.com/' target='_blank'>Express.js</a> - A minimal and flexible Node.js web application framework.
+  - <a href='https://mongodb.com/' target='_blank'>MongoDB</a> - A document-oriented NoSQL database.
+  - <a href='https://jwt.io/' target='_blank'>JWT</a> - A standard for creating JSON-based access tokens to authenticate clients.
+
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+Under this license, you may not use this project for:
+
+1. Commercial Purposes
+2. Distributing this project after modifying it
+3. You may not use this without appropriate attribution
+
+
+
+
