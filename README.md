@@ -1,4 +1,4 @@
-# Digitale Factory Todolist
+# Factory Digitale Todolist
 This is a simple backend application for a Todo List management system built using Express.js. The application uses MongoDB as a database and JWT for authentication.
 
 ## Get Started
